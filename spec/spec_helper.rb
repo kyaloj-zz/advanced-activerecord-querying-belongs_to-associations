@@ -14,6 +14,8 @@ ActiveRecord::Base.establish_connection(
   database: "upcase_exercise",
   encoding: "utf8",
   host: "localhost",
+  username: ENV.fetch('UPCASE_USER'),
+  password: ENV.fetch('UPCASE_PASS'),
   min_messages: "warning"
 )
 
