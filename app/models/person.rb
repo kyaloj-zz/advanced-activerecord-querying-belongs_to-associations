@@ -5,11 +5,10 @@ class Person < ActiveRecord::Base
   has_many :employees, class_name: "Person", foreign_key: :manager_id
 
   def self.in_region(region)
-    joins(:location).merge(Location.joins(:region).where(regions: {name: region}))
+    joins(:location).merge(Location.in_region(region))
   end
 
   def self.alphabetically_by_region_and_location
-    joins(:location).merge(Location.joins(:region))
-                    .order('regions.name','locations.name','people.name')
+    joins(:location => :region).order('regions.name','locations.name','people.name')
   end
 end
